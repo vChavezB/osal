@@ -21,6 +21,8 @@ extern "C" {
 #endif
 
 #include "osal.h"
+#include <zephyr/logging/log.h>
+LOG_MODULE_DECLARE(iol_master);
 
 /* Log levels */
 #define LOG_LEVEL_DEBUG   0x00
@@ -49,19 +51,19 @@ extern "C" {
    } while (0)
 
 /** Log debug messages */
-#define LOG_DEBUG(type, ...) LOG ((LOG_LEVEL_DEBUG | type), __VA_ARGS__)
+#define LOG_DEBUG(type, ...) LOG_DBG( __VA_ARGS__)
 
 /** Log informational messages */
-#define LOG_INFO(type, ...) LOG ((LOG_LEVEL_INFO | type), __VA_ARGS__)
+#define LOG_INFO(type, ...) LOG_INF( __VA_ARGS__)
 
 /** Log warning messages */
-#define LOG_WARNING(type, ...) LOG ((LOG_LEVEL_WARNING | type), __VA_ARGS__)
+#define LOG_WARNING(type, ...) LOG_WRN( __VA_ARGS__)
 
 /** Log error messages */
-#define LOG_ERROR(type, ...) LOG ((LOG_LEVEL_ERROR | type), __VA_ARGS__)
+#define LOG_ERROR(type, ...) LOG_ERR(__VA_ARGS__)
 
 /** Log fatal messages */
-#define LOG_FATAL(type, ...) LOG ((LOG_LEVEL_FATAL | type), __VA_ARGS__)
+#define LOG_FATAL(type, ...) LOG_ERR( __VA_ARGS__)
 
 #define LOG_DEBUG_ENABLED(type)   LOG_ENABLED (LOG_LEVEL_DEBUG | type)
 #define LOG_INFO_ENABLED(type)    LOG_ENABLED (LOG_LEVEL_INFO | type)
